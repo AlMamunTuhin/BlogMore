@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Blogs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../blogs.css" />
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="/blogs" id="home">
+        Home
+      </a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <ul>
+      <% blogs.forEach(blog => { %>
+        <li class="blog-item">
+          <a href="/restblogs/<%= blog._id %>">
+            <h3><%= blog.title %></h3>
+          </a>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+
+</body>
+
+</html>

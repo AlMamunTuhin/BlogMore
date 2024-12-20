@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlogMore</title>
+  <link rel="stylesheet" type="text/css" href="../home.css" />
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="intro-section">
+      <h1> Welcome, <%= user.username %>! </h1>
+      <p> This is your personal space where you can manage all your short blogs. </p>
+      
+      <a class="other-blogs-link" href="/restblogs" method="GET"> View Blogs from Other Users </a>
+ 
+      <a id="logout" href="/logout" method="GET">Logout</a> 
+    </div>
+
+    <div class="notes-section">
+      <h1 id="header">Your Blogs </h1>
+      <a id="add" href="/blogs/new" method="GET"> Add New Blog </a> <br>
+
+      <ul>
+        <% blogs.forEach(blog => { %>
+          <li class="notes">
+            <h4> <a method="GET" href="/blogs/<%= blog._id %>"><%= blog.title %> </a> </h4>
+            <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST" style="display:inline;">
+              <button type="submit"
+                style="background-color: rgb(27, 3, 3); color: white; border: none; padding: 5px;"> Delete
+              </button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+
+  </div>
+</body>
+
+</html>

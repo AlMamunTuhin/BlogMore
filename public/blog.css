@@ -1,0 +1,69 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
+.container {
+  max-width: 900px;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  margin: 20px;
+}
+
+
+.blog-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+
+.blog-author, .blog-date {
+  font-size: 0.95em;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.blog-author a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.blog-author a:hover {
+  text-decoration: underline;
+}
+
+.blog-content {
+  font-size: 1.15em;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+
+.edit-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.edit-btn:hover {
+  background-color: #218838;
+  cursor: pointer;
+}

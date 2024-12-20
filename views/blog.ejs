@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= blog.title %> - BlogMore</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../blog.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="blog-title"><%= blog.title %></h1>
+    
+        <p class="blog-author">By 
+            <a href="/user/<%= user._id %>">
+                <% if (u._id.toString() === user._id.toString()) { %>
+                    You
+                <% } else { %>
+                    <%= user.username %>
+                <% } %>
+            </a>
+        </p>
+        <p class="blog-date">
+            <%= blog.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+        </p>
+
+        <div class="blog-content">
+            <p><%= blog.content %></p>
+        </div>
+
+    
+        <% if (u._id.toString() === user._id.toString()) { %>
+            <a method="GET" href="/blogs/<%= blog._id %>/edit" class="edit-btn">Edit Blog</a>
+        <% } %>
+    </div>
+</body>
+
+</html>
