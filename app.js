@@ -1,6 +1,6 @@
 // Libraries
 import express from 'express';
-//import morgan from 'morgan';
+import morgan from 'morgan';
 import passport from 'passport';
 import helmet from 'helmet';
 import initializePassport from './config/passport-config.js';
@@ -44,7 +44,7 @@ const sessionOptions = {
 // Middleware setup
 app.use(helmet());
 app.set("view engine", "ejs");
-//app.use(morgan('tiny'));
+app.use(morgan('tiny'));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -55,7 +55,7 @@ app.use(session(sessionOptions));
 initializePassport(passport); 
 app.use(passport.initialize());
 app.use(passport.session());
-//app.use(ensureAuthenticated());
+
 
 // Route setup
 app.use('/', authRoutes);
