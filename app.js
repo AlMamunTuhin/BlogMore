@@ -10,6 +10,7 @@ import flash from 'express-flash';
 import { ensureAuthenticated } from './middleware/chechAuthenticity.js';
 import methodOverride from 'method-override';
 import cors from 'cors';
+import connectDB from './config/db.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -29,7 +30,7 @@ const sessionOptions = {
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
-    mongoUrl: process.env.DB_URL,
+    mongoUrl: process.env.DB_URI,
     collectionName: 'sessions',
     ttl: 24 * 60 * 60
   }),
@@ -62,6 +63,8 @@ app.use('/', authRoutes);
 app.use('/blogs', ensureAuthenticated, blogRoutes);
 app.use('/user', ensureAuthenticated, userRoutes);
 app.use('/restblogs', ensureAuthenticated, restBlogRoutes);
+
+connectDB();
 
 export default app;
 
