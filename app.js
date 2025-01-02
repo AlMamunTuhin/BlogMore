@@ -6,7 +6,6 @@ import helmet from 'helmet';
 import initializePassport from './config/passport-config.js';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
-import flash from 'express-flash';
 import { ensureAuthenticated } from './middleware/chechAuthenticity.js';
 import methodOverride from 'method-override';
 import cors from 'cors';
@@ -50,7 +49,6 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
-app.use(flash());
 app.use(methodOverride('_method'));
 app.use(session(sessionOptions));
 initializePassport(passport); 
@@ -65,6 +63,12 @@ app.use('/user', ensureAuthenticated, userRoutes);
 app.use('/restblogs', ensureAuthenticated, restBlogRoutes);
 
 connectDB();
+
+const port = process.env.PORT;
+
+app.listen(port, () => {
+  console.log(`listening on http://localhost:${port}`);
+});
 
 export default app;
 

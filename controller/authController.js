@@ -21,12 +21,18 @@ const d = passport.authenticate('local', {
 })
 
 const e = (req, res, next) => {
-  req.logout(err => {
+  req.logout((err) => { // Passport's logout method
     if (err) {
-      return next(err);
+      return res.status(500).json({ message: 'Logout failed', error: err });
     }
-    req.session.destroy(() => {
-      res.redirect('/login');
+
+    req.session.destroy((err) => { // Destroy the session in the store
+      if (err) {
+        return res.status(500).json({ message: 'Session destruction failed', error: err });
+      }
+
+      res.clearCookie('connect.sid'); // Clear the session cookie
+      return res.status(200).json({ message: 'Logged out successfully' });
     });
   });
 };
